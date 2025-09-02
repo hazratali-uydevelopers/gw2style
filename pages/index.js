@@ -107,7 +107,7 @@ export default function Home({ posts }) {
 export async function getServerSideProps() {
   try {
     const res = await fetch(
-      `http://localhost:8888/.netlify/functions/getPosts`
+      `https://gw2style.netlify.app/.netlify/functions/getPosts`
     );
     const posts = await res.json();
 
