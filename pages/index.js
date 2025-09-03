@@ -34,9 +34,9 @@ export default function Home({ posts }) {
             masonryRef.current = new Masonry(gridRef.current, {
               itemSelector: `.${styles.card}`,
               columnWidth: `.${styles.gridSizer}`,
-              gutter: 8,
               percentPosition: true,
               transitionDuration: '0.3s',
+              fitWidth: true,
             });
             console.log('Masonry initialized');
           });
@@ -66,17 +66,17 @@ export default function Home({ posts }) {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      {/* <Header /> */}
+      <Header />
 
-      <main>
-        <div ref={gridRef} className={styles.grid}>
-          <div className={styles.gridSizer}></div>
-          {posts.map((post) => (
-            <Link
-              key={post.id}
-              href={`/posts/${post.id}`}
-              className={styles.card}
-            >
+      <div ref={gridRef} className={styles.grid}>
+        <div className={styles.gridSizer}></div>
+        {posts.map((post) => (
+          <Link
+            key={post.id}
+            href={`/posts/${post.id}`}
+            className={styles.card}
+          >
+            <div>
               <div className={styles.imageWrapper}>
                 <Image
                   src={post.thumbnail}
@@ -94,18 +94,21 @@ export default function Home({ posts }) {
                 <h2 className={styles.title}>{post.title}</h2>
                 <p className={styles.views}>{post.views} views</p>
               </div>
-            </Link>
-          ))}
-        </div>
-      </main>
+            </div>
+          </Link>
+        ))}
+      </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
 
 export async function getServerSideProps() {
   try {
+    // const res = await fetch(
+    //   `http://localhost:8888/.netlify/functions/getPosts`
+    // );
     const res = await fetch(
       `https://gw2style.netlify.app/.netlify/functions/getPosts`
     );

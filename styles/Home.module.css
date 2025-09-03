@@ -1,26 +1,36 @@
-.grid {
-  position: relative;
+.container {
+  padding: 4px;
 }
 
-/* Grid sizer for masonry columns - this is invisible but defines column width */
+.grid {
+  position: relative;
+  width: 100%;
+}
+
 .gridSizer {
-  width: calc(25% - 16px);
+  width: 25%;
 }
 
 .card {
-  width: calc(25% - 16px);
+  padding: 4px;
+  width: 25%;
+  margin-bottom: 8px;
   display: block;
   text-decoration: none;
   color: inherit;
-  border: 1px solid #e0e0e0;
-  margin-bottom: 8px;
-  overflow: hidden;
-  background: #fff;
+  box-sizing: border-box;
   transition: transform 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.card:hover {
+.card > div {
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover > div {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
